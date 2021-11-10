@@ -37,7 +37,7 @@ class NotifyCard extends HTMLElement {
   }
 
   send(){
-    let tts = this.content.querySelector("input").checked;
+    let tts = this.content.querySelector('input[type=checkbox]'); 
     let msg = this.content.querySelector("paper-input").value;
     for (let t of this.targets) {
       let [domain, target = null] = t.split(".");
@@ -45,7 +45,7 @@ class NotifyCard extends HTMLElement {
         target = domain;
         domain = "notify";
       }
-      if(tts) {
+      if(tts.checked) {
         this.hass.callService(domain, target, {title: msg, message: "TTS", data: this.config.data});
       } else {
         this.hass.callService(domain, target, {message: msg, data: this.config.data});

@@ -44,7 +44,11 @@ class NotifyCard extends HTMLElement {
         target = domain;
         domain = "notify";
       }
-      this.hass.callService(domain, target, {title: msg, message: "TTS", data: this.config.data});
+      if(miCheckbox.checked) {
+        this.hass.callService(domain, target, {title: msg, message: "TTS", data: this.config.data});
+      } else {
+        this.hass.callService(domain, target, {message: msg, data: this.config.data});
+      }  
     }
     this.content.querySelector("paper-input").value = "";
   }

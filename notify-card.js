@@ -23,10 +23,10 @@ class NotifyCard extends HTMLElement {
       this.appendChild(this.card);
     }
     this.card.header = this.config.title || "Send Notification";
-    let label = this.config.label || "Notification Text"
+    let label = this.config.label || "Mensaje"
     this.content.innerHTML = `
       <div style="display: flex">
-        <input type="checkbox" name="miCheck">TTS</br>
+        <input type="checkbox" id="miCheck">TTS</br>
         <paper-input style="flex-grow: 1" label="${label}">
           <ha-icon-button icon="hass:send" slot="suffix"><ha-icon icon="hass:send"></ha-icon></ha-icon-button>
         </paper-input>

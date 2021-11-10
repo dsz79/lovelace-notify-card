@@ -37,7 +37,7 @@ class NotifyCard extends HTMLElement {
   }
 
   send(){
-    let tts = this.content.querySelector("miCheck").checked;
+    let tts = this.content.querySelector("input").checked;
     let msg = this.content.querySelector("paper-input").value;
     for (let t of this.targets) {
       let [domain, target = null] = t.split(".");

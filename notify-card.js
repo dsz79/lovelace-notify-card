@@ -27,7 +27,7 @@ class NotifyCard extends HTMLElement {
     this.content.innerHTML = `
       <div style="display: flex">
         <paper-input style="flex-grow: 1" label="${label}">
-          <ha-icon-button icon="hass:send" slot="suffix"></ha-icon-button>
+          <ha-icon-button icon="hass:send" title="Enviar" slot="suffix"><ha-icon icon="hass:send"></ha-icon></ha-icon-button>
         </paper-input>
       </div>
     `;

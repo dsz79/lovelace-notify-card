@@ -46,7 +46,8 @@ class NotifyCard extends HTMLElement {
         domain = "notify";
       }
       if(tts.checked) {
-        this.hass.callService(domain, target, {title: msg, message: "TTS", data: this.config.data});
+        this.config.data = {tts_text: msg, channel: "alarm_stream_max"};
+        this.hass.callService(domain, target, {message: "TTS", data: this.config.data});
       } else {
         this.hass.callService(domain, target, {message: msg, data: this.config.data});
       }  

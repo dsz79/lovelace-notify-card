@@ -36,12 +36,12 @@ class NotifyCard extends HTMLElement {
       </div>
     `;
     this.content.querySelector("ha-icon-button").addEventListener("click", this.send.bind(this), false);
-    this.content.querySelector("paper-input").addEventListener("keydown", this.keydown.bind(this), false);
+    this.content.querySelector("ha-textfield").addEventListener("keydown", this.keydown.bind(this), false);
   }
 
   send(){
     let tts = this.content.querySelector('input[type=checkbox]'); 
-    let msg = this.content.querySelector("paper-input").value;
+    let msg = this.content.querySelector("ha-textfield").value;
     for (let t of this.targets) {
       let [domain, target = null] = t.split(".");
       if(target === null){

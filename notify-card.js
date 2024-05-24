@@ -28,7 +28,7 @@ class NotifyCard extends HTMLElement {
       <div style="display: flex">
         <input type="checkbox" id="miCheck">TTS</br>
         <div style="display: flex; align-items: center; flex-grow: 1;">
-          <ha-textfield style="flex-grow: 1;" label="${label}"></ha-textfield>
+          <ha-textfield id="notification_text" style="flex-grow: 1;" label="Mensaje"></ha-textfield>
           <ha-icon-button icon="hass:send" style="margin-left: 8px;">
             <ha-icon icon="hass:send"></ha-icon>
           </ha-icon-button>
@@ -36,12 +36,12 @@ class NotifyCard extends HTMLElement {
       </div>
     `;
     this.content.querySelector("ha-icon-button").addEventListener("click", this.send.bind(this), false);
-    this.content.querySelector("ha-textfield").addEventListener("keydown", this.keydown.bind(this), false);
+    this.content.querySelector("#notification_text").addEventListener("keydown", this.keydown.bind(this), false);
   }
 
   send(){
     let tts = this.content.querySelector('input[type=checkbox]'); 
-    let msg = this.content.querySelector("ha-textfield").value;
+    let msg = this.content.querySelector("#notification_text").value;
     for (let t of this.targets) {
       let [domain, target = null] = t.split(".");
       if(target === null){
@@ -54,7 +54,7 @@ class NotifyCard extends HTMLElement {
         this.hass.callService(domain, target, {message: msg, data: this.config.data});
       }  
     }
-    this.content.querySelector("ha-textfield").value = "";
+    this.content.querySelectorAll("ha-textfield").forEach(e => e.value = "");
   }
 
   keydown(e){

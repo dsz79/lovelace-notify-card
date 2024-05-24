@@ -27,9 +27,12 @@ class NotifyCard extends HTMLElement {
     this.content.innerHTML = `
       <div style="display: flex">
         <input type="checkbox" id="miCheck">TTS</br>
-        <paper-input style="flex-grow: 1" label="${label}">
-          <ha-icon-button icon="hass:send" slot="suffix"><ha-icon icon="hass:send"></ha-icon></ha-icon-button>
-        </paper-input>
+        <div style="display: flex; align-items: center; flex-grow: 1;">
+          <ha-textfield style="flex-grow: 1;" label="${label}"></ha-textfield>
+          <ha-icon-button icon="hass:send" style="margin-left: 8px;">
+            <ha-icon icon="hass:send"></ha-icon>
+          </ha-icon-button>
+        </div>
       </div>
     `;
     this.content.querySelector("ha-icon-button").addEventListener("click", this.send.bind(this), false);
@@ -51,7 +54,7 @@ class NotifyCard extends HTMLElement {
         this.hass.callService(domain, target, {message: msg, data: this.config.data});
       }  
     }
-    this.content.querySelector("paper-input").value = "";
+    this.content.querySelector("ha-textfield").value = "";
   }
 
   keydown(e){
